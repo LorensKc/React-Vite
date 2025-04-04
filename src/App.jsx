@@ -1,17 +1,17 @@
 import Header from './components/Header/Header'
 import './App.css'
-import { ways } from './data'
+import { ways, differences } from './data'
 import { useState } from 'react';
 import WayToTeach from './components/WayToTeach'
 import Button from './components/Button/Button'
 
 function App() {
-const [count, setCount] = useState(0)const
+  const [contentType, setContentType] = useState(null);
+    console.log('App render')
 
-  let content = 'Push the button'
   function handleClick(type) {
-    console.log('click in App', type);
-    content = type;
+    console.log(contentType)
+    setContentType(type)
   }
 
   return (
@@ -33,7 +33,8 @@ const [count, setCount] = useState(0)const
           <Button onClick={() => handleClick('easy')} text='Click'/>
           <Button onClick={() => handleClick('program')}>Terminate</Button>
 
-          <p>{content}</p>
+          { contentType ? <p>{differences[contentType]}</p> : <div>Push the button</div>}
+          
         </section>
       </div>
     </>
