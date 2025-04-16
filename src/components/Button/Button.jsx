@@ -1,9 +1,13 @@
 import { Children } from 'react';
 import './Button.scss';
 
-function Button({text, children, onClick}) {
+function Button({text, children, onClick, isActive}) {
+    // let classes = 'button';
+    // if(isActive) classes += ' active';
+
+
     return(
-        <button className="button" onClick={onClick}>
+        <button className={isActive ? 'button active' : 'button'} onClick={onClick}>
             {text}
             {children}
         </button>

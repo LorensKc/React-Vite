@@ -10,9 +10,17 @@ function App() {
     console.log('App render')
 
   function handleClick(type) {
-    console.log(contentType)
+    // console.log(contentType)
     setContentType(type)
   }
+
+  // let tabContent = null;
+
+  // if (contentType) {
+  //   tabContent = <p>{differences[contentType]}</p>;
+  // } else {
+  //   tabContent = <div>Push the button</div>;
+  // }
 
   return (
     <>
@@ -29,11 +37,14 @@ function App() {
         </section>
         <section>
           <h2>What is difference between ass</h2>
-          <Button onClick={() => handleClick('way')} text='button 1'/>
-          <Button onClick={() => handleClick('easy')} text='Click'/>
-          <Button onClick={() => handleClick('program')}>Terminate</Button>
+          <Button isActive={contentType === 'way'} onClick={() => handleClick('way')} text='button 1'/>
+          <Button isActive={contentType === 'easy'} onClick={() => handleClick('easy')} text='Click'/>
+          <Button isActive={contentType === 'program'} onClick={() => handleClick('program')}>Terminate</Button>
 
-          { contentType ? <p>{differences[contentType]}</p> : <div>Push the button</div>}
+          { !contentType && <div>Push the button</div> }
+          { contentType && <p>{differences[contentType]}</p> }
+
+          {/* {tabContent} */}
           
         </section>
       </div>
