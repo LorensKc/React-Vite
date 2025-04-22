@@ -58,6 +58,15 @@ li {
   text-align: start;
 }
 
+.control {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
