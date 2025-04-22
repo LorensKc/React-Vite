@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import logo from '/vite.svg'
+import logo from '/vite.svg';
+import './Header.scss';
 
 function Header() {
     const [now, setNow] = useState(new Date())
