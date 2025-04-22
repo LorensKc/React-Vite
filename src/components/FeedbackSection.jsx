@@ -1,5 +1,5 @@
 import Button from "./Button/Button"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 function FeedbackSection() {
     const [form, setForm] = useState({
@@ -7,7 +7,7 @@ function FeedbackSection() {
         hasError: false, 
         reason: 'help',
     })
-    
+
     function handleNameChange(event) {
         setForm((prev) => ({
             ...prev,
@@ -16,17 +16,44 @@ function FeedbackSection() {
         }))
     }
 
+    function StateVsRef() {
+        const input = useRef()
+        const [show, setShow] = useState(false)
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                setShow(true)
+            }
+        }
+
+        return (
+            <div>
+                <h3>State vs Ref {show && input.current.value}</h3>
+                <input
+                    type="text" 
+                    ref={input}
+                    className="control"
+                    onKeyDown={handleKeyDown}
+                />
+            </div>
+        )
+    }
+
     return (
         <section>
             <h3>Feedback to ass</h3>
 
-            <form action="">
+            <form action="" style={{marginBottom: '2rem'}}>
                 <label htmlFor="name">Your Name:</label>
-                <input type="text" id="name" className="control" value={form.name} onChange={handleNameChange} 
-                style={{
-                    border: form.hasError ? '1px solid red' : null,
-                }}/>
-
+                <input 
+                    type="text" id="name" 
+                    className="control" 
+                    value={form.name} 
+                    onChange={handleNameChange} 
+                    style={{
+                        border: form.hasError ? '1px solid red' : null,
+                    }}
+                />
                 <label htmlFor="reason:">Your feedback</label>
                 <select 
                     id="reason" 
@@ -40,12 +67,9 @@ function FeedbackSection() {
                 </select>
 
                 <Button disabled={form.hasError} isActive={!form.hasError}>Send message</Button>
-            </form> 
+            </form>
 
-            <pre>
-                Name: {form.name} <br />
-                Reason: {form.reason}
-            </pre>
+            <StateVsRef />
         </section>
     )
 }
